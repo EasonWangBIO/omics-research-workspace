@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Runtime data and generated outputs
+data/uploads/
+runs/
+
+# Operating systems
+.DS_Store
+Thumbs.db
