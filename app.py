@@ -42,3 +42,12 @@ if count_file is not None:
     st.dataframe(count_data.head())
     gene_count,sample_count = count_data.shape
     st.write(f"{gene_count} gene x {sample_count} samples")
+
+if metadata_file is not None:
+    metadata_data = read_table(metadata_file,metadata_file.name)
+
+    st.subheader("Sample metadata preview")
+    st.dataframe(metadata_data.head())
+
+    sample_count,column_count = metadata_data.shape
+    st.write(f"{sample_count} samples x {column_count} metadata columns")
