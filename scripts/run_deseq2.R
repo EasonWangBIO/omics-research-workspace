@@ -213,3 +213,36 @@ cat(
   ncol(dds),
   "samples\n"
 )
+
+dds <- DESeq(dds)
+cat("DESeq2 analysis completed.\n")
+
+deseq_results <- results(
+  dds,
+  contrast = c("group", comparison_group, reference_group)
+)
+
+result_table <- as.data.frame(deseq_results)
+# Preserve gene IDs as a normal column
+result_table$gene_id <- rownames(result_table)
+#set the order of columns to have gene_id first
+result_table <- result_table[,c("gene_id", setdiff(colnames(result_table), "gene_id"))]
+#put the result table in order of adjusted p-value
+
+result_table<-result_table[order(result_table$padj,na.last = TRUE),]
+#create output directory if it does not exist
+dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+output_file<-file.path(output_dir,paste0("deseq2_",comparison_group,"_vs_",reference_group,".csv"))
+
+write.csv(
+  result_table,
+  file = output_file,
+  row.names = FALSE
+)
+
+significant_count <- sum(
+  !is.na(result_table$padj) & result_table$padj < 0.05
+)
+
+cat("results saved to:", output_file, "\n")
+cat("Number of significant genes (padj < 0.05):", significant_count, "\n")
