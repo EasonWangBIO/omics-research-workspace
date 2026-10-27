@@ -19,6 +19,7 @@ __pycache__/
 # Runtime data and generated outputs
 data/uploads/
 runs/
+results/
 
 # Operating systems
 .DS_Store
