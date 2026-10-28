@@ -1,0 +1,12 @@
+name: omics-workspace
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - python=3.12
+  - r-base=4.5
+  - bioconductor-deseq2=1.50.2
+  - pip
+  - pip:
+    - -e .
