@@ -7,11 +7,6 @@ A reproducible Streamlit app for validating bulk RNA-seq inputs, running two-gro
 ![R](https://img.shields.io/badge/R-4.5-276DC3?logo=r&logoColor=white)
 ![DESeq2](https://img.shields.io/badge/DESeq2-1.50.2-198754)
 
-## From input validation to DESeq2 results
-
-The app validates count matrices and sample metadata before running DESeq2 and returning downloadable differential-expression results.
-
-![Omics Research Workspace showing validated inputs and DESeq2 results](docs/images/workflow-result.png)
 
 ## Installation
 Clone the repository and create the analysis environment:
@@ -67,3 +62,7 @@ validation checks but are too small for a representative DESeq2 model fit.
 
 ## From input validation to DESeq2 results
 
+The app validates count matrices and sample metadata before running DESeq2 and returning downloadable differential-expression results.
+
+![Omics Research Workspace showing validated inputs and DESeq2 results](docs/images/workflow-result.png)
+![results](docs/images/screen1.png)
