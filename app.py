@@ -18,7 +18,7 @@ st.title("Omics Research Workspace")
 st.caption(f"Version {__version__}")
 
 st.write(
-    "Upload a count matrix and sample metadata to start a reproducible"
+    "Upload a count matrix and sample metadata to start a reproducible "
     "bulk RNA-seq analysis"
 )
 

@@ -3,24 +3,38 @@
 A reproducible Streamlit app for validating bulk RNA-seq inputs, running two-group differential expression analysis with DESeq2, and downloading traceable results.
 
 ![Status](https://img.shields.io/badge/status-active%20development-orange)
+[![CI](https://github.com/EasonWangBIO/omics-research-workspace/actions/workflows/ci.yml/badge.svg)](https://github.com/EasonWangBIO/omics-research-workspace/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.12-blue?logo=python&logoColor=white)
 ![R](https://img.shields.io/badge/R-4.5-276DC3?logo=r&logoColor=white)
 ![DESeq2](https://img.shields.io/badge/DESeq2-1.50.2-198754)
 
+> [!NOTE]
+> This project is under active development. The current workflow completes a
+> reproducible two-group DESeq2 analysis; quality-control plots and gene
+> annotation are planned before the first stable release.
+
+## From validated inputs to DESeq2 results
+
+The app validates count matrices and sample metadata before running DESeq2 and
+returning a downloadable differential-expression table with its analysis log.
+
+![Differential-expression results for the official airway example](docs/images/screen1.png)
 
 ## Installation
-Clone the repository and create the analysis environment:
+
+### Requirements
+
+- Git
+- Conda or Miniforge
+- Linux, macOS, or Windows with WSL2
+
+Clone the repository and create the complete Python, R, and DESeq2 environment:
 
 ```bash
 git clone https://github.com/EasonWangBIO/omics-research-workspace.git
 cd omics-research-workspace
 conda env create -f environment.yml
 ```
-### Requirements
-
-- Git
-- Conda or Miniforge
-- Linux, macOS, or Windows with WSL2
 
 Activate the environment and start the app:
 
@@ -30,7 +44,15 @@ python -m streamlit run app.py
 ```
 Open <http://localhost:8501> in a web browser.
 
+To verify the installation before starting the app:
+
+```bash
+python -c "import omics_workspace; print(omics_workspace.__version__)"
+Rscript -e 'suppressPackageStartupMessages(library(DESeq2)); packageVersion("DESeq2")'
+```
+
 ## Current workflow
+
 1. Upload a raw count matrix and sample metadata in CSV or TSV format.
 2. Validate count values, experimental groups, biological replicates, and
    sample ID agreement.
@@ -54,15 +76,9 @@ validation checks but are too small for a representative DESeq2 model fit.
 
 ## Planned increments
 
-- PCA and sample-level quality control
-- Volcano, MA, correlation, and expression heat maps
-- Configurable thresholds and gene annotation
-- GO and KEGG enrichment analysis
-- Reproducible reports and run history
-
-## From input validation to DESeq2 results
-
-The app validates count matrices and sample metadata before running DESeq2 and returning downloadable differential-expression results.
-
-![Omics Research Workspace showing validated inputs and DESeq2 results](docs/images/workflow-result.png)
-![results](docs/images/screen1.png)
+- Before v1.0: PCA and sample-level quality control
+- Before v1.0: volcano, MA, correlation, and expression heat maps
+- Before v1.0: configurable thresholds and gene annotation
+- v1.0: clean-environment release validation and stable documentation
+- v1.1: GO and KEGG enrichment analysis
+- Later: reproducible reports and run history
